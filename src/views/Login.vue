@@ -24,7 +24,7 @@
 import LoginForm from '@/components/LoginForm.vue'
 
 export default {
-    name: 'Login',
+    name: 'login',
     components: {
         LoginForm
     }    
