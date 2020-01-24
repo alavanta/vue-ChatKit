@@ -19,6 +19,22 @@ async function connectUser(userId) {
   return currentUser;
 }
 
+async function sendMessage(text) {
+    const messageId = await currentUser.sendMessage({
+        text,
+        roomId: activeRoom.id
+    })
+    return messageId;
+}
+
+export function isTyping(roomId) {
+    currentUser.isTypingIn({ roomId });
+}
+
+function disconnectUser() {
+    currentUser.disconnect();
+}
+
 function setMembers() {
     const members = activeRoom.users.map(user => ({
         username: user.id,
@@ -59,5 +75,8 @@ async function subscribeToRoom(roomId) {
 
 export default {
     connectUser,
-    subscribeToRoom
+    subscribeToRoom,
+    disconnectUser,
+    sendMessage
+
   }
